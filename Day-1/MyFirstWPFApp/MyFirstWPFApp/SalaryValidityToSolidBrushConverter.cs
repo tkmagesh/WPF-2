@@ -8,12 +8,12 @@ using System.Windows.Media;
 
 namespace MyFirstWPFApp
 {
-    public class SliderValueToSolidColorBrushConverter : IValueConverter
+    public class SalaryValidityToSolidBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var sliderValue = (double) value;
-            return sliderValue < 50 ? new SolidColorBrush(Colors.Red) : new SolidColorBrush(Colors.Green);
+            var val = (bool) value;
+            return val ? Brushes.White : Brushes.Gray;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

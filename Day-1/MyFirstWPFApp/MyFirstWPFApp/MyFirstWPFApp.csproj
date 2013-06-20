@@ -56,7 +56,16 @@
     <Compile Include="ColorPalette.xaml.cs">
       <DependentUpon>ColorPalette.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Employee.cs" />
     <Compile Include="MultiSliderValuesToSolidBrushConverter.cs" />
+    <Compile Include="SalaryCalculator.cs" />
+    <Compile Include="SalaryCalculatorUI.xaml.cs">
+      <DependentUpon>SalaryCalculatorUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryValidityToSolidBrushConverter.cs" />
+    <Compile Include="SimpleObjectBinding.xaml.cs">
+      <DependentUpon>SimpleObjectBinding.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SliderValueToSolidColorBrushConverter.cs" />
     <Page Include="ColorPalette.xaml">
       <SubType>Designer</SubType>
@@ -81,6 +90,14 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SalaryCalculatorUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimpleObjectBinding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

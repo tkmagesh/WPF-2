@@ -1,0 +1,31 @@
+﻿<Window x:Class="MyFirstWPFApp.SimpleObjectBinding"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        FontSize="22"
+        xmlns:local="clr-namespace:MyFirstWPFApp"
+        Title="SimpleObjectBinding" Height="320.8" Width="358.4">
+    <Grid Name="GridLayoutRoot">
+        <Grid.Resources>
+            <local:Employee x:Key="employee" Id="100" FirstName="Magesh" LastName="K"></local:Employee>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!--<TextBox Name="TxtId" Grid.Row="0" 
+                 DataContext="{Binding Source={StaticResource employee}}" 
+                 Text="{Binding Path=Id}"></TextBox>
+        -->
+        <TextBox Name="TxtId" Grid.Row="0" 
+               Text="{Binding Source={StaticResource employee}, Path=Id}"></TextBox>
+        
+        <TextBox Name="TxtFirstName" Grid.Row="1" Text="{Binding Source={StaticResource employee}, Path=FirstName}"></TextBox>
+        <TextBox Name="TxtLastName" Grid.Row="2" Text="{Binding Source={StaticResource employee}, Path=LastName}"></TextBox>
+        <TextBlock Name="TbFullName" Grid.Row="3" Text="{Binding Source={StaticResource employee}, Path=FullName}"></TextBlock>
+        <Button Name="BtnDisplayNames" Content="Set and Display Names" Grid.Row="4" Click="BtnDisplayNames_OnClick"></Button>
+    </Grid>
+</Window>
