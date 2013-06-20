@@ -6,7 +6,7 @@
         Title="SalaryCalculatorUI" Height="400" Width="400">
     <Grid>
         <Grid.Resources>
-            <local:SalaryCalculator x:Key="calculator"></local:SalaryCalculator>
+            <local:SalaryCalculatorViewModel x:Key="calculator"></local:SalaryCalculatorViewModel>
         </Grid.Resources>
         <Grid.DataContext>
             <Binding Source="{StaticResource calculator}"></Binding>
@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -46,7 +46,13 @@
                     ></Slider>
             <TextBlock Text="{Binding Path=Tax, StringFormat=#}" HorizontalAlignment="Center"></TextBlock>
         </StackPanel>
-        <TextBlock Grid.Row="5" Grid.ColumnSpan="2" FontSize="32"
+        
+        <Button Command="{Binding Path=CalculateSalaryCommand}"
+            Grid.Row="5" Grid.Column="0" Content="Calculate" Margin="20,2"></Button>
+        <Button Command="{Binding Path=IncrementSalaryCommand}"
+            Grid.Row="5" Grid.Column="1" Content="Increment Basic" Margin="20,2"></Button>
+       
+        <TextBlock Grid.Row="6" Grid.ColumnSpan="2" FontSize="32"
                    HorizontalAlignment="Center"
                    Text="{Binding Path=Salary}"
                    >

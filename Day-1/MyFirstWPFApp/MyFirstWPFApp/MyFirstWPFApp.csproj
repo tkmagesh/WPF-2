@@ -59,9 +59,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="MultiSliderValuesToSolidBrushConverter.cs" />
     <Compile Include="SalaryCalculator.cs" />
-    <Compile Include="SalaryCalculatorUI.xaml.cs">
-      <DependentUpon>SalaryCalculatorUI.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="SalaryCalculatorViewModel.cs" />
     <Compile Include="SalaryValidityToSolidBrushConverter.cs" />
     <Compile Include="SimpleObjectBinding.xaml.cs">
       <DependentUpon>SimpleObjectBinding.xaml</DependentUpon>
