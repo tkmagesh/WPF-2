@@ -23,5 +23,60 @@ namespace ContentControlDemo
         {
             InitializeComponent();
         }
+
+        
+
+        public static readonly DependencyProperty FieldCaptionProperty =
+            DependencyProperty.Register("FieldCaption", typeof (string), typeof (DataEntryField), new PropertyMetadata(default(string), FieldCaptionPropertyChanged));
+
+        private static void FieldCaptionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var def = (DataEntryField) d;
+            def.LblFieldName.Content = e.NewValue;
+        }
+
+        public string FieldCaption
+        {
+            get { return (string) GetValue(FieldCaptionProperty); }
+            set
+            {
+                //LblFieldName.Content = value;
+                SetValue(FieldCaptionProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty FieldValueProperty =
+            DependencyProperty.Register("FieldValue", typeof (string), typeof (DataEntryField), new PropertyMetadata(default(string), (
+                o, args) =>
+                {
+                    var def = (DataEntryField) o;
+                    def.TxtFieldValue.Text = args.NewValue.ToString();
+                }));
+
+        private string _normalValue;
+
+        public string FieldValue
+        {
+            get { return (string) GetValue(FieldValueProperty); }
+            set
+            {
+                //TxtFieldValue.Text = value;
+                SetValue(FieldValueProperty, value);
+            }
+        }
+
+        //CLR Property
+        public string NormalValue
+        {
+            get
+            {
+                return _normalValue;
+            }
+            set
+            {
+                _normalValue = value;
+                this.TbNormalValue.Text = value;
+            }
+        }
     }
 }

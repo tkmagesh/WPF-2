@@ -1,0 +1,17 @@
+﻿<Window x:Class="StylesDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        FontSize="22"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="SplTextBlock">
+            <Setter Property="TextBlock.Background" Value="Gray"></Setter>
+            <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <TextBlock Text="Textblock - 1" Style="{StaticResource SplTextBlock}"></TextBlock>
+        <TextBlock Text="Textblock - 2"></TextBlock>
+    </StackPanel>
+        
+</Window>

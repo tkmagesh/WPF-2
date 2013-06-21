@@ -4,7 +4,20 @@
         xmlns:local="clr-namespace:ContentControlDemo"
         FontSize="22"
         Title="Window1" Height="300" Width="300">
+    <Window.Resources>
+        <Style TargetType="{x:Type local:DataEntryField}">
+            <Setter Property="FieldCaption" Value="Set Style"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <local:DataEntryField Margin="0,0,-0.4,232.4"></local:DataEntryField>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Name="TbText" Text="Name :"></TextBox>
+        <local:DataEntryField Grid.Row="1" 
+                              FieldValue="Magesh"
+                              ></local:DataEntryField>
+        
     </Grid>
 </Window>

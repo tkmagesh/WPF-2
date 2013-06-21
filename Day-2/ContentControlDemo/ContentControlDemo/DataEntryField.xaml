@@ -9,9 +9,10 @@
           <Grid.ColumnDefinitions>
               <ColumnDefinition></ColumnDefinition>
               <ColumnDefinition></ColumnDefinition>
-              
-          </Grid.ColumnDefinitions>  
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>  
         <Label Name="LblFieldName" Content="Label :" HorizontalContentAlignment="Right"></Label>
         <TextBox Name="TxtFieldValue" Grid.Column="1"></TextBox>
+        <TextBlock Name="TbNormalValue" Text="[Normal Value]" Grid.Column="2"></TextBlock>
     </Grid>
 </UserControl>

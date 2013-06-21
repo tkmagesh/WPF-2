@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using CollectionBindingDemo.Annotations;
+using System.Threading.Tasks;
 
-namespace CollectionBindingDemo
+namespace ParallelProgrammingDemo
 {
     public class CompanyEmployees : INotifyPropertyChanged
     {
@@ -15,9 +13,10 @@ namespace CollectionBindingDemo
         private int _selectedCompanyId;
         private Employee _selectedEmployee;
         private IEnumerable<Employee> _listEmployees;
+        private string _status;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
+        
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
@@ -83,20 +82,47 @@ namespace CollectionBindingDemo
 
         public CompanyEmployees()
         {
-            Employees = new ObservableCollection<Employee>()
+            var fetchEmployeestask = new Task<ObservableCollection<Employee>>(DataAccessUtils.GetAllEmployees);
+            fetchEmployeestask.ContinueWith(t =>
                 {
-                    new Employee(){Id=11, FirstName = "Magesh", LastName = "Kuppan", Salary = 10000, CompanyId = 102},
-                    new Employee(){Id=12, FirstName = "Suresh", LastName = "Kannan", Salary = 20000, CompanyId = 101 },
-                    new Employee(){Id=13, FirstName = "Rajesh", LastName = "Pandit", Salary = 30000, CompanyId = 102},
-                    new Employee(){Id=14, FirstName = "Ramesh", LastName = "Jayaram", Salary = 40000, CompanyId = 101}
-                };
-            Companies = new ObservableCollection<Company>()
+                    Employees = t.Result;
+                    ListEmployees = Employees;
+                });
+            fetchEmployeestask.Start();
+
+            //Employees = DataAccessUtils.GetAllEmployees();
+            var fetchCompaniestask = new Task<ObservableCollection<Company>>(DataAccessUtils.GetAllCompanies);
+            fetchCompaniestask.ContinueWith(t =>
                 {
-                    new Company(){Id = -1, Name = "All"},
-                    new Company(){Id = 101, Name = "Schneider"},
-                    new Company(){Id = 102, Name = "APC"}
-                };
-            //ListEmployees = Employees;
+                        fetchEmployeestask.Wait();
+                        Companies = t.Result;
+                        DisplayCompleted();
+                    });
+            
+            fetchCompaniestask.Start();
+            DisplayLoading();
+            
+
+        }
+
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                OnPropertyChanged("Status");
+            }
+        }
+
+        private void DisplayCompleted()
+        {
+            Status = "Loaded";
+        }
+
+        private void DisplayLoading()
+        {
+            Status = "Loading";
         }
     }
 }

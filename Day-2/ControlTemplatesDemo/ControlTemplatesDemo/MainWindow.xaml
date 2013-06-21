@@ -1,0 +1,13 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="ControlTemplatesDemo.MainWindow"
+	x:Name="Window"
+	Title="MainWindow"
+	FontSize="22"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot">
+		<CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="29.6" Margin="113.8,92.6,0,0" VerticalAlignment="Top" Width="189.6"/>
+	</Grid>
+</Window>
